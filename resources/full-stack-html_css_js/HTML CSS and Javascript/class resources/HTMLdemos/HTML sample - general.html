@@ -1,0 +1,436 @@
+   <!DOCTYPE html>
+   <html>
+   <head>
+      <title>HTML Review</title>
+   </head>
+   <body>
+
+      <h1>Formatting Text</h1>
+
+      <p>
+         <b>This is bold</b>
+      </p>
+
+      <p>
+         <strong>This is strong</strong>
+      </p>
+
+      <p>
+         <i>This is italicized</i>
+      </p>
+
+      <p>
+         <em>This is emphasized</em>
+      </p>
+
+      <p>
+         Example of superscript text: x<sup>2</sup> + 3x = 5 = 0 
+      </p>
+
+      <p>
+         Example of subscript text: H<sub>2</sub>O is refreshing. 
+      </p>
+
+      <hr>
+
+      <h1>Additional Tags</h1>
+
+      <p>
+         Here's a quote from olsensoft.com:
+         <blockquote cite="http://olsensoft.com/">
+          Olsen Software is an independent IT training and services company based in Swansea in the UK.
+          We have a worldwide client base including major international corporations, 
+          financial organizations, educational institutions, and government departments. 
+          We provide standard and bespoke training, development, mentoring, and consultancy services 
+          to fit every need. 
+       </blockquote>
+    </p>
+
+    <p>
+      Here's a short quote: <q>Find out how we can help you step up to the plate!</q>
+   </p>
+
+   <p>
+      Here's an address: 
+      <address>
+       Jane Doe<br>
+       1 Main St<br>
+       Somecity<br>
+    </address>
+ </p>
+
+ <p>
+   Hello world<br>
+   <bdo dir="rtl">Hello world</bdo><br>
+   <bdo dir="ltr">Hello world</bdo>
+</p>
+
+<p>
+   The <abbr title="British Broadcasting Corporation">BBC</abbr> is the main public-service broadcaster in the UK. 
+</p>
+
+<hr>
+
+<h1>Entities</h1>
+
+<p>For a full list of entities, see <a href="https://dev.w3.org/html5/html-author/charref"
+   target="_blank">https://dev.w3.org/html5/html-author/charref</a></p>
+
+   <p>Here are some non-breaking spaces:&nbsp;&nbsp;&nbsp;&nbsp;Nice aren't they?</p>
+
+   <p>Currencies: &pound; &euro; &yen; &dollar;</p>
+
+   <p>Accented characters, lowercase: &aring; &oslash; &aelig; &eacute; &egrave; &agrave; &acirc; &ccedil; &ouml; &uuml;</p>
+
+   <p>Accented characters, uppercase: &Aring; &Oslash; &AElig; &Eacute; &Egrave; &Agrave; &Acirc; &Ccedil; &Ouml; &Uuml;</p>
+
+   <p>Mathematical symbols: &sum; &prod; &infin; &int; &DifferentialD; &CapitalDifferentialD; &forall; &part; &exist; &there4; &sim;</p>
+
+   <p>Playing card suits: &hearts; &spades; &clubs; &diams;</p>
+
+   <p>Other interesting entities: &lt; &le; &gt; &ge; &amp; &quot; &apos; &copy; &alpha; &beta; &gamma;</p>
+
+   <p>Entities as numbers: &#194; &#200; &#201; &#202; &#203;</p>
+
+   <hr>
+
+   <h1>Displaying Images</h1>
+
+   <h2>Image, relative URL</h2>
+   <img src="images/Kitzbuhel.jpg" alt="Kitzb&uuml;hel">
+
+   <h2>Image, absolute URL</h2>
+   <img src="https://multicode.co.uk/images/Performance.png" alt="Matt's Book">
+
+   <h1>Image Click Maps</h1>
+
+   <img src="images/Kitzbuhel.jpg" alt="Kitzb&uuml;hel" usemap="#mymap" width="500" height="300">
+
+   <map name="mymap">
+      <area shape="rect"   coords="0,0,249,149" alt="Top left" href="resources/page1.html">
+      <area shape="rect"   coords="250,0,499,149" alt="Top right" href="resources/page2.html">
+      <area shape="circle" coords="125,225,50" alt="Bottom left" href="resources/page3.html">
+      <area shape="poly"   coords="375,150,499,225,375,299,250,225"  alt="Bottom right" href="resources/page4.html">
+   </map>
+
+   <hr>
+
+   <h1>Linking to Other Documents</h1>
+
+   <h2>Relative hyperlinks</h2>
+   <p>Here's a link to <a href="resources/page1.html">page 1</a></p>
+   <p>Here's a link to <a href="resources/page2.html">page 2</a></p>
+   <p>Here's a link to <a href="resources/page3.html">page 3</a></p>
+
+   <h2>Absolute hyperlinks</h2>
+   <p>Here's a link to <a href="https://www.oreilly.com/">O'Reilly</a></p>
+   <p>Here's a link to <a href="http://www.multicode.co.uk/">Multicode</a></p>
+   <p>Here's a link to <a href="https://www.google.com/">Google</a></p>
+
+   <hr>
+
+   <h1>Linking within a Document</h1>
+
+   <p>Here's a link to <a href="#section1">section 1</a></p>
+   <p>Here's a link to <a href="#section2">section 2</a></p>
+   <p>Here's a link to <a href="#section3">section 3</a></p>
+
+   <p>
+      <a name="section1"></a>
+      <b>This is section 1 in the document.</b> 
+      It contains some sample text. It's just a lot of sample text to be honest.
+      Maybe a joke... What do you call a donkey with 3 legs? A wonkey.
+   </p>
+
+   <p>
+      <a name="section2"></a>
+      <b>This is section 2 in the document.</b> 
+      It contains some more sample text. It's just more text.
+      Maybe another joke... A shepherd tells his sheepdog to gather in the sheep. An hour later, the sheepdog reports back.
+      The shepherd says to the sheepdog, "Good dog. How many sheep did you gather?" The sheepdog replies, "40".
+      The shepherd looks confused: "But I've only got 37 sheep", he says. 
+      And the dog replies, "I rounded them up".
+   </p>
+
+   <p>
+      <a name="section3"></a>
+      <b>This is section 3 in the document.</b> 
+      Let's cut straight to the joke...
+      What do you call a man with a plank of wood on his head? Edward.
+      What do you call a man with 2 planks of wood on his head? Ed Woodward.
+      What do you call a man with 3 planks of wood on his head? Edward Woodward.
+      What do you call a man with 4 planks of wood on his head? You don't know, do you? Neither do I, but Edward Woodward would.
+   </p>
+
+   <hr>
+
+   <h1>Link Techniques</h1>
+
+   <p>To send me an email, click <a href="mailto:info@olsensoft.com">here</a></p>
+
+   <p>To call me, click <a href="tel:+44.1111.222222">here</a></p>
+
+   <hr>
+
+   <h1>Link Appearance</h1>
+
+   <p>For info about Wales, click this link: 
+      <a href="https://en.wikipedia.org/wiki/Wales">Click me</a>
+   </p>
+
+   <p>For info about Wales, click this image:
+      <a href="https://en.wikipedia.org/wiki/Wales">
+       <img src="resources/Wales.png" alt="Click me" width="50">
+    </a>
+ </p>
+
+ <p>For info about Wales, click this button:
+   <button onclick="document.location='https://en.wikipedia.org/wiki/Wales'">Click me</button>
+</p>
+
+<hr>
+
+<h1>Unordered Lists - Example 1</h1>
+<ul>
+   <li>St. Anton</li>
+   <li>Kitzb&uuml;hel</li>
+   <li>Val d'Is&egrave;re</li>
+   <li>Meribel</li>
+   <li>Villars</li>
+</ul>
+
+<hr>
+
+
+<h1>Unordered Lists - Example 2</h1>
+
+<h3>Circle</h3>
+<ul type="circle">
+   <li>St. Anton</li>
+   <li>Kitzb&uuml;hel</li>
+   <li>Val d'Is&egrave;re</li>
+   <li>Meribel</li>
+   <li>Villars</li>
+</ul>
+
+<h3>Disc</h3>
+<ul type="disc">
+   <li>St. Anton</li>
+   <li>Kitzb&uuml;hel</li>
+   <li>Val d'Is&egrave;re</li>
+   <li>Meribel</li>
+   <li>Villars</li>
+</ul>
+
+<h3>Square</h3>
+<ul type="square">
+   <li>St. Anton</li>
+   <li>Kitzb&uuml;hel</li>
+   <li>Val d'Is&egrave;re</li>
+   <li>Meribel</li>
+   <li>Villars</li>
+</ul>
+
+<hr>
+<h1>Unordered Lists - Example 3</h1>
+
+<ul>
+   <li>Austria
+    <ul>
+     <li>St. Anton</li>
+     <li>Kitzb&uuml;hel</li>
+  </ul>
+</li>
+<li>Other
+ <ul>
+  <li>Switzerland
+   <ul>
+    <li>Villars</li>
+    <li>Zermatt</li>
+ </ul>
+</li>
+<li>France
+   <ul>
+    <li>Val d'Is&egrave;re</li>
+    <li>Meribel</li>
+ </ul>
+</li>
+</ul>
+</li>
+</ul>
+
+<hr>
+
+<h1>Ordered Lists - Example 1</h1>
+<ol>
+   <li>St. Anton</li>
+   <li>Kitzb&uuml;hel</li>
+   <li>Val d'Is&egrave;re</li>
+   <li>Meribel</li>
+   <li>Villars</li>
+</ol>
+
+<hr>
+
+<h1>Ordered Lists - Example 2</h1>
+
+<h2>Lowercase letters</h2>
+<ol type="a">
+   <li>St. Anton</li>
+   <li>Kitzb&uuml;hel</li>
+   <li>Val d'Is&egrave;re</li>
+   <li>Meribel</li>
+   <li>Villars</li>
+</ol>
+
+<h2>Uppercase letters</h2>
+<ol type="A">
+   <li>St. Anton</li>
+   <li>Kitzb&uuml;hel</li>
+   <li>Val d'Is&egrave;re</li>
+   <li>Meribel</li>
+   <li>Villars</li>
+</ol>
+
+<h2>Lowercase Roman numerals</h2>
+<ol type="i">
+   <li>St. Anton</li>
+   <li>Kitzb&uuml;hel</li>
+   <li>Val d'Is&egrave;re</li>
+   <li>Meribel</li>
+   <li>Villars</li>
+</ol>
+
+<h2>Uppercase Roman numerals</h2>
+<ol type="I">
+   <li>St. Anton</li>
+   <li>Kitzb&uuml;hel</li>
+   <li>Val d'Is&egrave;re</li>
+   <li>Meribel</li>
+   <li>Villars</li>
+</ol>
+
+<h2>Numeric</h2>
+<ol type="1">
+   <li>St. Anton</li>
+   <li>Kitzb&uuml;hel</li>
+   <li>Val d'Is&egrave;re</li>
+   <li>Meribel</li>
+   <li>Villars</li>
+</ol>
+
+<hr>
+
+<h1>Ordered Lists - Example 3</h1>
+
+<h2>start="5"</h2>
+<ol start="5">
+   <li>St. Anton</li>
+   <li>Kitzb&uuml;hel</li>
+   <li>Val d'Is&egrave;re</li>
+   <li>Meribel</li>
+   <li>Villars</li>
+</ol>
+
+<h2>type="i" start="5"</h2>
+<ol type="i" start="5">
+   <li>St. Anton</li>
+   <li>Kitzb&uuml;hel</li>
+   <li>Val d'Is&egrave;re</li>
+   <li>Meribel</li>
+   <li>Villars</li>
+</ol>
+
+<h2>type="i" start="5" reversed</h2>
+<ol type="i" start="5" reversed>
+   <li>St. Anton</li>
+   <li>Kitzb&uuml;hel</li>
+   <li>Val d'Is&egrave;re</li>
+   <li>Meribel</li>
+   <li>Villars</li>
+</ol>
+
+<hr>
+
+<h1>Mixing Lists</h1>
+
+<ul>
+   <li>Austria
+     <ol>
+       <li>St. Anton</li>
+       <li>Kitzb&uuml;hel</li>
+    </ol>
+ </li>
+ <li>Other
+  <ul>
+    <li>Switzerland
+      <ol>
+        <li>Villars</li>
+        <li>Zermatt</li>
+     </ol>
+  </li>
+  <li>France
+   <ol>
+     <li>Val d'Is&egrave;re</li>
+     <li>Meribel</li>
+  </ol>
+</li>
+</ul>
+</li>
+</ul>
+
+
+<hr>
+
+<h1>Description Lists</h1>
+
+<dl>
+   <dt>Austria</dt>
+   <dd>St. Anton</dd>
+   <dd>Kitzb&uuml;hel</dd>
+
+   <dt>Switzerland</dt>
+   <dd>Villars</dd>
+   <dd>Zermatt</dd>
+
+   <dt>France</dt>
+   <dd>Val d'Is&egrave;re</dd>
+   <dd>Meribel</dd>
+</dl>
+
+
+<hr>
+
+<h1>Simple Table Example</h1>
+<table>
+   <tr>
+     <td>Ola</td><td>M</td><td>25</td>
+  </tr>
+  <tr>
+     <td>Kari</td><td>F</td><td>24</td>
+  </tr>
+</table>
+
+<hr>
+
+<h1>Semantic Tags Example</h1>
+
+<article>
+  <section>
+      <header>Header for section 1</header>
+      <p>This example shows how to use HTML5 semantic tags...</p>
+      <p>This page looks much better if you link it to the stylesheet!</p>
+      <footer>Footer for section 1</footer>
+    </section>
+      
+  <section>
+      <header>Header for section 2</header>
+      <p>Content for section 2</p>
+      <footer>Footer for section 2</footer>
+    </section>
+</article>
+
+
+</body>
+</html>
+

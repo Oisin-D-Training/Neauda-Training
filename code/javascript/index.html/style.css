@@ -1,0 +1,43 @@
+input[type=text],
+input[type=password] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid rgb(32, 28, 28);
+    box-sizing: border-box;
+}
+
+label {
+    float: left;
+    width: 100px;
+    text-align: left;
+}
+
+.form {
+    width: 900px;
+    margin: 0 auto;
+    padding: 1em;
+    border: 1px solid #CCC;
+    border-radius: 1em;
+}
+
+
+
+@media only screen and (min-width: 641px) and (max-width: 1024px)
+{
+.form { width: 600px }
+}
+@media only screen and (min-width: 577px) and (max-width: 640px)
+{
+.form {width: 95%}
+}
+@media only screen and (min-width: 400px) and (max-width: 576px)
+{
+.form {width: 400px}
+}
+    
+    
+input[type=submit]:hover {
+    background-color: #45a049;
+}
