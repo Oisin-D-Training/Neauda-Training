@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset='UTF-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css'
+        integrity='sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=='
+        crossorigin='anonymous' referrerpolicy='no-referrer' />
+    <script src='https://cdn.tailwindcss.com'></script>
+    <script src='../script.js'></script>
+    <title>500 Greatest Albums</title>
+</head>
+
+<body>
+
+    <header>
+        <div class='relative container mx-auto items-center mt-4 bg-zinc-800 rounded-md px-3 py-1.5'>
+            <div class=' object-fill h-80 w-160 overflow-hidden opacity-90 rounded-md bg-white mt-1'>
+                <img class='opacity-80 object-scale-down' src='img/hero1.jpg' alt='' />
+            </div>
+
+
+            <nav class='container mx-auto items-center bg-zinc-800 rounded-md px-3 py-1'>
+                <!--List-->
+                <ul
+                    class='hidden md:flex flex-1 flex-row-reverse items-end items-centre gap-2 bg-neutral-0 text-neutral-900 text-sm py-2'>
+
+                    <!--Search box-->
+                    <form action='search.php' method='POST'>
+                        <div class='pt-2 relative mx-auto text-gray-600'>
+                            <input
+                                class='border-2 border-gray-300 bg-white h-11 lg:h-22 px-5 pr-16 rounded-lg text-sm focus:outline-none'
+                                type='search' name='search' placeholder='e.g Policy Number...'>
+                            <button type='submit' name='submit-search' class='absolute right-0 top-0 mt-5 mr-4'>
+                                <svg class='text-gray-600 h-4 w-4 fill-current' xmlns='http://www.w3.org/2000/svg'
+                                    xmlns:xlink='http://www.w3.org/1999/xlink' version='1.1' id='Capa_1' x='0px' y='0px'
+                                    viewBox='0 0 56.966 56.966' style='enable-background:new 0 0 56.966 56.966;'
+                                    xml:space='preserve' width='512px' height='512px'>
+                                    <path
+                                        d='M55.146,51.887L41.588,37.786c3.486-4.144,5.396-9.358,5.396-14.786c0-12.682-10.318-23-23-23s-23,10.318-23,23  s10.318,23,23,23c4.761,0,9.298-1.436,13.177-4.162l13.661,14.208c0.571,0.593,1.339,0.92,2.162,0.92  c0.779,0,1.518-0.297,2.079-0.837C56.255,54.982,56.293,53.08,55.146,51.887z M23.984,6c9.374,0,17,7.626,17,17s-7.626,17-17,17  s-17-7.626-17-17S14.61,6,23.984,6z' />
+                                </svg>
+                            </button>
+                        </div>
+                    </form>
+
+
+                    <!--nav pages-->
+                    <ul class='hidden sm:flex flex-1 gap-2 bg-neutral-0 text-neutral-900 text-sm'>
+
+                        <button type='button'
+                            class='transition ease-in-out delay-150 bg-cyan-800 hover:-translate-y-1 hover:scale-10 hover:bg-cyan-900 duration-300 text-white rounded-md px-9 py-3 '>
+                            New Claim</button>
+
+                        <button type='button'
+                            class='transition ease-in-out delay-150 bg-cyan-800 hover:-translate-y-1 hover:scale-10 hover:bg-cyan-900 duration-300 text-white rounded-md px-9 py-3 '>
+                            Claim Status</button>
+
+                        <button type='button'
+                            class='transition ease-in-out delay-150 bg-cyan-800 hover:-translate-y-1 hover:scale-10 hover:bg-cyan-900 duration-300 text-white rounded-md px-9 py-3 '>
+                            Claim Assessment</button>
+
+                    </ul>
+                    <!--Hamburger Dropdown-->
+                    <div class='flex md:hidden flex-1 justify-end'> <i class='text-2xl fa-solid fa-bars'></i></div>
+
+
+            </nav>
+        </div>
+    </header>
+
+
+
+</body>
+
+</html>
