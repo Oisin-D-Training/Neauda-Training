@@ -37,7 +37,16 @@
   }
 }
 
+.visible {
+  display: block;
+}
+
+.hidden {
+  display: none;
+}
+
 ul {
+  display: none;
   list-style: none
 }
 
