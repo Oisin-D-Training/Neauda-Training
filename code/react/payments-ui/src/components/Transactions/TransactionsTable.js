@@ -50,7 +50,8 @@ const TransactionsTable = () => {
         <tbody>
           {payments.map((payment, index) => {
             return (
-              payment.country === country && (
+              //if country is selected, display only that country else display all countries
+              (country === payment.country || country === "All") && (
                 <TransactionsRow
                   key={index}
                   id={payment.id}
