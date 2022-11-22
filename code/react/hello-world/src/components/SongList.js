@@ -39,22 +39,6 @@ const SongList = () => {
         <hr></hr>
         <br></br>
       </ul>
-
-      <ul className={ulClass}>
-        <li>
-          <div className="details">
-            <img
-              className="image-size"
-              src="https://thedailyaztec.com/wp-content/uploads/2021/04/Lil-Nas-X.png"
-              alt="Call me by your name by lil nas x montero"
-            />
-            <div className="title">
-              <h3>Call Me by Your Name</h3>
-              <h4>Lil Nas X Montero</h4>
-            </div>
-          </div>
-        </li>
-      </ul>
     </div>
   );
 };

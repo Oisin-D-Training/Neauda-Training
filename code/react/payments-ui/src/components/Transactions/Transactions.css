@@ -10,3 +10,12 @@
     padding: 3px;
     border: 1px solid #999;
 }
+
+.transactionsCountrySelector {
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    width: 400px;
+}

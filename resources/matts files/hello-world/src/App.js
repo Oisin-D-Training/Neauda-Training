@@ -9,6 +9,7 @@ function App() {
       <Greeting name="Matt" age="21" />
       <Greeting name="James" age="23" />
       <Greeting name="Susan" age="441" />
+      <SongList />
     </div>
   );
 }

@@ -1,6 +1,6 @@
 const Songs = (props) => {
     return (      
-           <div> {props.title} {props.details}</div>
+           <div> {props.songs.title} {props.songs.details}</div>
 
     )
 }

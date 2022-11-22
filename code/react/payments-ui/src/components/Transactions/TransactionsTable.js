@@ -1,29 +1,71 @@
 import TransactionsRow from "./TransactionsRow";
-import './Transactions.css';
+import "./Transactions.css";
+import "../Data/Data.js";
+import { getAllPayments } from "../Data/Data.js";
+import { useState } from "react";
 
 const TransactionsTable = () => {
-return (
-    <table className="transactionsTable">
+  //get data from Data.js and store in variable
+  const payments = getAllPayments();
+
+  //create dropdown menu to select country
+  const countryList = payments.map((payment) => payment.country);
+
+  const uniqueCountryList = [...new Set(countryList)];
+
+  const countryOptions = uniqueCountryList.map((country) => (
+    <option key={country} value={country}>
+      {country}
+    </option>
+  ));
+
+  const [country, setCountry] = useState(countryOptions);
+
+  const handleCountryChange = (event) => {
+    const option = event.target.value;
+    setCountry(option);
+  };
+
+  return (
+    <div>
+      <div className="transactionsCountrySelector">
+        <h1>Select Country</h1>
+        <div className="dropdown">
+          <select onChange={handleCountryChange}>
+            <option value="All">All</option>
+            {countryOptions}
+          </select>
+        </div>
+      </div>
+      <table className="transactionsTable">
         <thead>
-            <tr>
-                <th>Id</th>
-                <th>Date</th>
-                <th>Country</th>
-                <th>Currency</th>
-                <th>Amount</th>
-            </tr>
+          <tr>
+            <th>Id</th>
+            <th>Date</th>
+            <th>Country</th>
+            <th>Currency</th>
+            <th>Amount</th>
+          </tr>
         </thead>
         <tbody>
-            <TransactionsRow id="1" date="2022-11-10" country="USA" 
-            currency="USD" amount="17.55" />
-            <TransactionsRow id="2" date="2022-11-10" country="UK" 
-            currency="GBP" amount="19.06" />
-            <TransactionsRow id="3" date="2022-11-10" country="USA" 
-            currency="USD" amount="45.00" />
-
+          {payments.map((payment, index) => {
+            return (
+              payment.country === country && (
+                <TransactionsRow
+                  key={index}
+                  id={payment.id}
+                  date={payment.date}
+                  country={payment.country}
+                  currency={payment.currency}
+                  amount={payment.amount}
+                />
+              )
+            );
+          })}
         </tbody>
-    </table>
-)
-}
+      </table>
+    </div>
+  );
+};
 
 export default TransactionsTable;
