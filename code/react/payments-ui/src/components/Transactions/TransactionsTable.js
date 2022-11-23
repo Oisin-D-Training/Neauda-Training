@@ -1,12 +1,83 @@
 import TransactionsRow from "./TransactionsRow";
 import "./Transactions.css";
 import "../Data/Data.js";
-import { getAllPayments } from "../Data/Data.js";
-import { useState } from "react";
+import {
+  getAllPayments,
+  getAllPaymentsFetchVersion,
+  getAllPaymentsAxiosVersion,
+} from "../Data/Data.js";
+import { useState, useEffect } from "react";
 
 const TransactionsTable = () => {
-  //get data from Data.js and store in variable
-  const payments = getAllPayments();
+  const [payments, setPayments] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  // const [isLoading, setIsLoading] = useState(0);
+  // //0 - not loaded
+  // //1 - loading
+  // //2 - loaded
+
+  useEffect(() => {
+    loadData();
+  }, []);
+
+  const loadData = () => {
+    getAllPaymentsAxiosVersion()
+      .then((response) => {
+        if (response.status === 200) {
+          console.log("everything is ok");
+          setIsLoading(false);
+          setPayments(response.data);
+        } else {
+          console.log("something went wrong", response.status);
+        }
+      })
+      .catch((error) => {
+        console.log("something went wrong", error);
+      });
+  };
+
+  // const paymentsPromise = getAllPaymentsAxiosVersion();
+
+  // if (isLoading === 0) {
+  //   setIsLoading(1);
+  //   paymentsPromise.then((response) => {
+  //     if (response.status === 200) {
+  //       console.log("everything is ok");
+  //       setIsLoading(2);
+  //       setPayments(response.data);
+  //     } else {
+  //       console.log("something went wrong", response.status);
+  //     }
+  //   });
+  //   paymentsPromise.catch((error) => {
+  //     console.log("something went wrong", error);
+  //   });
+  // }
+
+  //  const paymentsPromise = getAllPaymentsFetchVersion();
+
+  // if (isLoading === 0) {
+  //   setIsLoading(1);
+  //   //if the promise is resolved, then we can use the data
+  //   paymentsPromise.then((response) => {
+  //     if (response.ok) {
+  //       console.log("response ok");
+  //       response.json().then((data) => {
+  //         // console.log("data: ", data);
+  //         setPayments(data);
+  //         setIsLoading(2);
+  //       });
+  //     } else {
+  //       console.log("response not ok");
+  //     }
+  //   });
+  //   paymentsPromise.catch((error) => {
+  //     console.log("something went wrong", error);
+  //   });
+  // }
+
+  // //get data from Data.js and store in variable
+  // const payments = getAllPayments();
 
   //create dropdown menu to select country
   const countryList = payments.map((payment) => payment.country);
@@ -15,7 +86,7 @@ const TransactionsTable = () => {
 
   const countryOptions = uniqueCountryList.map((country) => (
     <option key={country} value={country}>
-      {country}
+      {country.toString().toUpperCase()}
     </option>
   ));
 
@@ -28,15 +99,22 @@ const TransactionsTable = () => {
 
   return (
     <div>
-      <div className="transactionsCountrySelector">
-        <h1>Select Country</h1>
-        <div className="dropdown">
-          <select onChange={handleCountryChange}>
-            <option value="All">All</option>
-            {countryOptions}
-          </select>
+      {!isLoading && (
+        <div className="transactionsCountrySelector">
+          <h1>Select Country</h1>
+          <div className="dropdown">
+            <select onChange={handleCountryChange}>
+              <option value="All">All</option>
+              {countryOptions}
+            </select>
+          </div>
         </div>
-      </div>
+      )}
+      {isLoading && (
+        <div className="loading" style={{ textAlign: "center" }}>
+          Loading...
+        </div>
+      )}
       <table className="transactionsTable">
         <thead>
           <tr>
