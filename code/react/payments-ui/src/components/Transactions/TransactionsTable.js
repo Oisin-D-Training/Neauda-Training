@@ -5,10 +5,13 @@ import {
   getAllPayments,
   getAllPaymentsFetchVersion,
   getAllPaymentsAxiosVersion,
+  getAllCountries,
+  getAllPaymentsForCountry,
+  getAllPaymentsForOrderId,
 } from "../Data/Data.js";
 import { useState, useEffect } from "react";
 
-const TransactionsTable = () => {
+const TransactionsTable = (props) => {
   const [payments, setPayments] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   // const [isLoading, setIsLoading] = useState(0);
@@ -16,17 +19,49 @@ const TransactionsTable = () => {
   // //1 - loading
   // //2 - loaded
 
-  useEffect(() => {
-    loadData();
-  }, []);
+  const [countries, setCountries] = useState([]);
 
-  const loadData = () => {
-    getAllPaymentsAxiosVersion()
+  const loadData = (country) => {
+    getAllPaymentsForCountry(country)
       .then((response) => {
         if (response.status === 200) {
           console.log("everything is ok");
           setIsLoading(false);
           setPayments(response.data);
+        } else {
+          console.log("something went wrong", response.status);
+        }
+      })
+      .catch((error) => {
+        console.log("something went wrong", error);
+      });
+  };
+
+  useEffect(() => {
+    loadCountry();
+  }, []);
+
+  useEffect(() => {
+    if (props.searchTerm !== "") {
+      setIsLoading(true);
+      getAllPaymentsForOrderId(props.searchTerm)
+        .then((response) => {
+          setPayments(response.data);
+          setIsLoading(false);
+        })
+        .catch((error) => {
+          console.log("something went wrong", error);
+        });
+    }
+  }, [props.searchTerm]);
+
+  const loadCountry = () => {
+    getAllCountries()
+      .then((response) => {
+        if (response.status === 200) {
+          console.log("everything is ok");
+          setIsLoading(false);
+          setCountries(response.data);
         } else {
           console.log("something went wrong", response.status);
         }
@@ -80,30 +115,41 @@ const TransactionsTable = () => {
   // const payments = getAllPayments();
 
   //create dropdown menu to select country
-  const countryList = payments.map((payment) => payment.country);
+  // const countryList = payments.map((payment) => payment.country);
 
-  const uniqueCountryList = [...new Set(countryList)];
+  // console.log("countryList: ", countryList);
 
-  const countryOptions = uniqueCountryList.map((country) => (
+  // const uniqueCountryList = [...new Set(countryList)];
+
+  // const countryOptions = uniqueCountryList.map((country) => (
+  //   <option key={country} value={country}>
+  //     {country.toString().toUpperCase()}
+  //   </option>
+  // ));
+
+  const countryOptions = countries.map((country) => (
     <option key={country} value={country}>
-      {country.toString().toUpperCase()}
+      {country}
     </option>
   ));
 
-  const [country, setCountry] = useState(countryOptions);
+  const [country, setCountry] = useState("");
 
   const handleCountryChange = (event) => {
     const option = event.target.value;
     setCountry(option);
+    setIsLoading(true);
+    loadData(option);
   };
 
   return (
     <div>
-      {!isLoading && (
+      {!isLoading && props.searchTerm === "" && (
         <div className="transactionsCountrySelector">
           <h1>Select Country</h1>
           <div className="dropdown">
-            <select onChange={handleCountryChange}>
+            <select onChange={handleCountryChange} defaultValue={country}>
+              <option value="---select---">---select---</option>
               <option value="All">All</option>
               {countryOptions}
             </select>
@@ -119,6 +165,7 @@ const TransactionsTable = () => {
         <thead>
           <tr>
             <th>Id</th>
+            <th>Order Id</th>
             <th>Date</th>
             <th>Country</th>
             <th>Currency</th>
@@ -128,11 +175,11 @@ const TransactionsTable = () => {
         <tbody>
           {payments.map((payment, index) => {
             return (
-              //if country is selected, display only that country else display all countries
-              (country === payment.country || country === "All") && (
+              (country === payment.country || props.searchTerm !== "") && (
                 <TransactionsRow
                   key={index}
                   id={payment.id}
+                  orderId={payment.orderId}
                   date={payment.date}
                   country={payment.country}
                   currency={payment.currency}
@@ -141,6 +188,14 @@ const TransactionsTable = () => {
               )
             );
           })}
+
+          {/* {   payments
+                .filter (payment => props.searchTerm !== "" || payment.country === selectedCountry)
+                .map( (payment, index) => {
+                return <TransactionsRow key={index} id={payment.id} date={payment.date}
+                country = {payment.country}  currency = {payment.currency} orderId={payment.orderId}
+                amount={payment.amount}   />
+            }   )   } */}
         </tbody>
       </table>
     </div>

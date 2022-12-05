@@ -14,6 +14,7 @@ export const getAllPayments = () => {
         {id: 110, amount: 110, country: "FRA", currency: "EUR", date: "2017-02-01", order_id:"21216661", tax_code: 7, tax_rate: 0.21, type: "SALE"},
         {id: 111, amount: -150, country: "SWE", currency: "EUR", date: "2017-02-01", order_id:"21216662", tax_code: 19, tax_rate: 0.25, type: "Refund"},
         {id: 112, amount: 600, country: "USA", currency: "USD", date: "2017-02-02", order_id:"21216663", tax_code: 0, tax_rate: 0, type: "SALE"}
+        
     ]
 }
 
@@ -32,6 +33,36 @@ export const getAllPaymentsAxiosVersion  = () => {
     return axios({url : "http://localhost:8080/api/payment",
             method: "GET", 
             headers: {"Accept" : "application/json"}
+            })
+}
+
+export const getAllPaymentsForCountry  = (country) => {
+    return axios({url : "http://localhost:8080/api/payment?country=" + country,
+            method: "GET", 
+            headers: {"Accept" : "application/json"}
+            })
+}
+
+export const getAllCountries  = () => {
+    return axios({url : "http://localhost:8080/api/country",
+            method: "GET", 
+            headers: {"Accept" : "application/json"}
+            })
+}
+
+export const getAllPaymentsForOrderId  = (orderId) => {
+    return axios({url : "http://localhost:8080/api/payment?order="+orderId,
+            method: "GET", 
+            headers: {"Accept" : "application/json"}
+            })
+}
+
+//add a transaction
+export const addTransaction = (payment) => {
+    return axios({url : "http://localhost:8080/api/payment",
+            method: "POST", 
+            headers: {"Accept" : "application/json", "Content-Type" : "application/json"},
+            data: payment
             })
 }
 
