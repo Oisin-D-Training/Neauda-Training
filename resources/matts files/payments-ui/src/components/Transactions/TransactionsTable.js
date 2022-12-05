@@ -1,16 +1,35 @@
 import TransactionsRow from "./TransactionsRow";
 import './Transactions.css';
-import { getAllPayments, getAllPaymentsAxiosVersion, getAllPaymentsFetchVersion, getAllPaymentsForCountry, getCountries } from "../../data/DataFunctions";
+import { getAllPaymentsForCountry, getAllPaymentsForOrderId, getCountries } from "../../data/DataFunctions";
 import { useEffect, useState } from "react";
+import { useSearchParams } from 'react-router-dom';
 
-const TransactionsTable = () => {
+const TransactionsTable = (props) => {
 
     const [payments, setPayments] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
 
+    const [searchParams, setSearchParams] = useSearchParams();
+
+
     useEffect( () => {
         loadCountries();
     } , []);
+
+    useEffect( () => {
+        if(props.searchTerm !== "") {
+            setIsLoading(true);
+            getAllPaymentsForOrderId(props.searchTerm)
+                .then( response => {
+                        setPayments(response.data);
+                        setIsLoading(false);
+                } )
+                .catch ( error => {
+                    console.log("something went wrong", error);
+                })
+        }
+
+    }, [props.searchTerm]  );
 
     const [uniqueCountries, setUniqueCountries] = useState([])
 
@@ -48,29 +67,36 @@ const TransactionsTable = () => {
             })
     }
     
-
-
     //debugger;
    
     
     const [selectedCountry, setSelectedCountry] = useState("");
+
+    useEffect( ()=> {
+        const country = searchParams.get("country");
+        if (country !== selectedCountry) {
+            setSelectedCountry(country);
+            loadData(country);
+        }
+     }, [] );
 
     const changeCountry = (event) => {
         const country = event.target.value;
         setSelectedCountry(country);
         setIsLoading(true)
         loadData(country);
-        console.log(country);
+        setSearchParams({"country" : country});
     }
 
-return (<div>
-    {!isLoading && <div className="transactionsCountrySelector">
-        Select country: <select onChange={changeCountry} defaultValue="">
+return (<>
+    {!isLoading && props.searchTerm === "" && <div className="transactionsCountrySelector">
+        Select country: <select onChange={changeCountry} defaultValue={selectedCountry}>
             <option value="" disabled={true}> ---select---</option>
             {uniqueCountries.map (country => <option key={country} value={country}>{country}</option>)}
         </select>
     </div>}
     {isLoading && <p style={{textAlign:"center"}} >Please wait... loading</p>}
+    {!isLoading &&
     <table className="transactionsTable">
         <thead>
             <tr>
@@ -91,17 +117,19 @@ return (<div>
             }   ) 
             */ 
             }
-
-            {payments
-                .filter (payment => payment.country === selectedCountry)
+            
+            {   payments
+                .filter (payment => props.searchTerm !== "" || payment.country === selectedCountry)
                 .map( (payment, index) => {
-                return selectedCountry && <TransactionsRow key={index} id={payment.id} date={payment.date}
+                return <TransactionsRow key={index} id={payment.id} date={payment.date}
                 country = {payment.country}  currency = {payment.currency} orderId={payment.orderId}
                 amount={payment.amount}   />
             }   )   }
 
         </tbody>
-    </table></div>
+    </table>
+    }
+    </>
 )
 }
 

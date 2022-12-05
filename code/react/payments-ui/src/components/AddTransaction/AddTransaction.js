@@ -38,13 +38,6 @@ const [submitted, setSubmitted] = useState(false);
     const handleSubmit = (event) => {
         event.preventDefault();
         props.addTransaction(newTransaction);
-        dispatch({ field: "orderId", value: "" });
-        dispatch({ field: "date", value: new Date().toISOString().slice(0, 10) });
-        dispatch({ field: "country", value: "" });
-        dispatch({ field: "currency", value: "" });
-        dispatch({ field: "amount", value: "0" });
-        dispatch({ field: "taxCode", value: "" });
-        dispatch({ field: "taxRate", value: "0" });
         setSubmitted(true);
     }
   return (
@@ -110,7 +103,8 @@ const [submitted, setSubmitted] = useState(false);
         />
         <br />
         <label htmlFor="type">Type</label>
-        <input type="text" id="type" />
+        <input type="text" id="type"   value={newTransaction.type}
+          onChange={handleChange}/>
         <br />
         <button type="submit">Save</button>
         {submitted? (

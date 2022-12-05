@@ -1,9 +1,12 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+
 
 const Search = (props) => {
   const [valid, setValid] = useState(true);
   const [touched, setTouched] = useState(false);
   const [localSearchTerm, setLocalSearchTerm] = useState("");
+  const navigate = useNavigate();
 
   const checkValidity = (value) => {
     setValid(value.trim().length > 0);
@@ -19,6 +22,8 @@ const Search = (props) => {
     event.preventDefault();
     props.setSearchTerm(localSearchTerm);
     console.log("Searching for: " + props.searchTerm);
+    navigate(`/find/${localSearchTerm}`);
+
   };
 
   const resetSearch = () => {
@@ -26,6 +31,7 @@ const Search = (props) => {
     setTouched(false);
     setValid(true);
     props.setSearchTerm("");
+    // navigate(`/find`);
   };
 
   return (

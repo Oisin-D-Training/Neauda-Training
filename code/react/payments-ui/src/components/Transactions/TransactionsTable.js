@@ -10,6 +10,7 @@ import {
   getAllPaymentsForOrderId,
 } from "../Data/Data.js";
 import { useState, useEffect } from "react";
+import { useSearchParams } from "react-router-dom";
 
 const TransactionsTable = (props) => {
   const [payments, setPayments] = useState([]);
@@ -20,6 +21,9 @@ const TransactionsTable = (props) => {
   // //2 - loaded
 
   const [countries, setCountries] = useState([]);
+  const [searchParams, setSearchParams] = useSearchParams()
+
+  
 
   const loadData = (country) => {
     getAllPaymentsForCountry(country)
@@ -140,6 +144,7 @@ const TransactionsTable = (props) => {
     setCountry(option);
     setIsLoading(true);
     loadData(option);
+    setSearchParams({country: option})
   };
 
   return (
